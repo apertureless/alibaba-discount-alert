@@ -3,6 +3,12 @@ const fsp = require('fs-promise')
 const request = require('request-promise-native')
 const cheerio = require('cheerio')
 const IncomingWebhook = require('@slack/client').IncomingWebhook
+const http = require('http')
+
+const proxy = http.createServer( (req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('okay');
+})
 
 require('dotenv').load()
 
@@ -102,4 +108,7 @@ function watch() {
   }, refreshIntervall)
 }
 
-watch()
+proxy.listen(1337, '127.0.0.1', () => {
+  console.log('Listening on port 1337')
+  watch()
+})
