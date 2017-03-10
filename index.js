@@ -81,6 +81,11 @@ function writeToFile(price) {
   })
 }
 
+webhook.send(`🔥 Alibot Online!`, err => {
+  if (err) {
+    console.log('Error:', err)
+  }
+})
 console.log('🚀 Monitor started. Time to get some deals!')
 
 setInterval(() => {
