@@ -6,9 +6,9 @@ const IncomingWebhook = require('@slack/client').IncomingWebhook
 
 require('dotenv').load()
 
-const mins = process.env.REFRESH_TIME
+const mins = process.env.REFRESH_TIME || 60
 const refreshIntervall = mins * 60 * 1000
-const articlePageUrl = process.env.URL
+const articlePageUrl = process.env.ALIEXPRESS_URL
 const slackUrl = process.env.SLACK_WEBHOOK_URL || ''
 
 const webhook = new IncomingWebhook(slackUrl)
