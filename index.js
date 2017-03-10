@@ -12,7 +12,6 @@ const articlePageUrl = process.env.ALIEXPRESS_URL
 const slackUrl = process.env.SLACK_WEBHOOK_URL || ''
 
 const webhook = new IncomingWebhook(slackUrl)
-let running = false
 
 const options = {
   uri: articlePageUrl,
@@ -82,36 +81,25 @@ function writeToFile(price) {
   })
 }
 
-function welcome() {
-  if (!running) {
-    running = true
-    webhook.send(`🔥 Alibot Online!`, err => {
-      if (err) {
-        console.log('Error:', err)
-      }
-    })
-  }
+function watch() {
+  console.log('👀 Watching you... ')
+
+  setInterval(() => {
+    getPrice()
+      .then(price => {
+        if (price) {
+          isLowestPrice(price)
+            .then(isLowest => {
+              if (isLowest) {
+                sendNotification(price)
+              }
+              return true
+            })
+            .then(writeToFile(price))
+            .catch(err => console.log(err))
+        }
+      })
+  }, refreshIntervall)
 }
 
-function listen() {
-  getPrice()
-    .then(price => {
-      if (price) {
-        isLowestPrice(price)
-          .then(isLowest => {
-            if (isLowest) {
-              sendNotification(price)
-            }
-            return true
-          })
-          .then(writeToFile(price))
-          .catch(err => console.log(err))
-      }
-    })
-}
-
-welcome()
-
-setInterval(() => {
-  listen()
-}, refreshIntervall)
+watch()
