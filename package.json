@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js &",
     "build": "npm run lint && npm run build:es",
     "build:es": "cross-env BABEL_ENV=es babel index.js --out-dir dist",
     "prepublish": "npm run build",
