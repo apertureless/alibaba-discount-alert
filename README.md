@@ -19,9 +19,9 @@ This way you can easy watch certain products and snipe the biggest discount!
 ```
 REFRESH_TIME = 60
 SLACK_WEBHOOK_URL = ''
-URL = 'https://www.aliexpress.com/{articleurl}'
+ALIEXPRESS_URL = 'https://www.aliexpress.com/{articleurl}'
 ```
 
 ## Deploy
 
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/apertureless/alibaba-discount-alert)
+[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/apertureless/alibaba-discount-alert&env=REFRESH_TIME&env=SLACK_WEBHOOK_URL&env=ALIEXPRESS_URL)
