@@ -1,0 +1,59 @@
+{
+  "name": "alibaba-price-monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run xo && yarn run build:es",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist",
+    "prepublish": "npm run build",
+    "lint": "xo"
+  },
+  "dependencies": {
+    "@slack/client": "^3.8.1",
+    "cheerio": "^0.22.0",
+    "dotenv": "^4.0.0",
+    "fs-promise": "^2.0.0",
+    "pm2": "^2.4.2",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "semicolon": false,
+    "ignores": [
+      "test/**"
+    ],
+    "rules": {
+      "import/no-unassigned-import": 0,
+      "import/no-dynamic-require": 0,
+      "import/no-unresolved": 0,
+      "max-depth": 0,
+      "max-params": 0,
+      "no-use-before-define": 0,
+      "complexity": 0,
+      "no-control-regex": 0
+    }
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "ignore": "test/**",
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=7.5.0"
+  }
+}
