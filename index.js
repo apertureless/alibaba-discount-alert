@@ -42,12 +42,16 @@ async function getPrice() {
   return price
 }
 
-function sendNotification(price) {
-  webhook.send(`🔥 New Discount! Price is: ${price} visit: ${articlePageUrl}`, err => {
+function sendSlackNotification(message) {
+  webhook.send(message, err => {
     if (err) {
       console.log('Error:', err)
     }
   })
+}
+
+function sendNotification(price) {
+  sendSlackNotification(`🔥 New Discount! Price is: ${price} visit: ${articlePageUrl}`)
 }
 
 async function isLowestPrice(price) {
@@ -84,6 +88,7 @@ function writeToFile(price) {
 
 function watch() {
   console.log('👀 Watching you... ')
+  sendSlackNotification('🚀 I am online and watching your discounts')
 
   setInterval(() => {
     getPrice()
