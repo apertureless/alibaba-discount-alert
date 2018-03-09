@@ -11,7 +11,7 @@
     "lint": "xo"
   },
   "dependencies": {
-    "@slack/client": "^3.8.1",
+    "@slack/client": "^4.0.0",
     "cheerio": "^0.22.0",
     "dotenv": "^4.0.0",
     "request": "^2.81.0",
