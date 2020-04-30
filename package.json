@@ -7,15 +7,17 @@
     "start": "node index.js &",
     "build": "npm run lint && npm run build:es",
     "build:es": "cross-env BABEL_ENV=es babel index.js --out-dir dist",
-    "prepublish": "npm run build",
-    "lint": "xo"
+    "prepublish": "yarn run snyk-protect && npm run build",
+    "lint": "xo",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@slack/client": "^4.0.0",
     "cheerio": "^0.22.0",
     "dotenv": "^4.0.0",
     "request": "^2.81.0",
-    "request-promise-native": "^1.0.3"
+    "request-promise-native": "^1.0.3",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -55,5 +57,6 @@
   },
   "engines": {
     "node": ">=7.6.0"
-  }
+  },
+  "snyk": true
 }
